@@ -1,0 +1,30 @@
+name: Deploy Debug Dimension v1
+on:
+  push:
+    branches: [main, staging, 'feature/*']
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    # Logic to select the GitHub Environment based on the branch
+    environment: ${{ github.ref == 'refs/heads/main' && 'production' || 'staging' }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Build and Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          # Command dynamically switches branch targets
+          command: |
+            pages deploy ./dist \
+            --project-name=debug-dimension \
+            --branch=${{ github.ref == 'refs/heads/main' && 'main' || 'staging' }}
+          vars: |
+            DATABASE_ID=${{ secrets.DATABASE_ID }}
+            NODE_ENV=${{ github.ref == 'refs/heads/main' && 'production' || 'staging' }}
