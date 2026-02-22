@@ -13,14 +13,13 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
       });
     }
 
-    // In a real scenario, we'd hash the accessKey and compare it with password_hash in D1.
-    // For this initialization, we'll check if the user exists.
     const user = await env.DB.prepare("SELECT * FROM admin_users WHERE username = ? AND password_hash = ?")
       .bind(username, accessKey)
       .first();
 
     if (user) {
-      // Mock session token
+      // NOTE: This is a mock session token for the initial V2 rollout.
+      // In production, this should be replaced with a signed JWT and password hashing.
       const token = btoa(JSON.stringify({ username, expiry: Date.now() + 3600000 }));
       return new Response(JSON.stringify({ success: true, token }), {
         headers: {
