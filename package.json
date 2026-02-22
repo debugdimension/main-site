@@ -1,5 +1,5 @@
 {
-  "name": "debug-dimension-v2",
+  "name": "main-site",
   "version": "1.0.0",
   "description": "Full-Stack + Zero Trust Command Center",
   "type": "module",
@@ -10,7 +10,7 @@
     "wrangler": "wrangler"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20260228.0",
+    "@cloudflare/workers-types": "^4.20240222.0",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^5.1.4",
