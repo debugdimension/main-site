@@ -1,4 +1,4 @@
-1. Objective
+Objective
 What specific module or fix does this PR address? (e.g., Initial /logs layout, D1 connection fix)
 
 Changes Implemented
@@ -9,10 +9,9 @@ Changes Implemented
 Staging Verification
 Staging URL: [Insert Link]
 Verification Steps:
-
-Passed Zero Trust OTP? [Yes/No]
-Database CRUD operations successful? [Yes/No]
-UI matches brand reference? [Yes/No]
+* Passed Zero Trust OTP? [Yes/No]
+* Database CRUD operations successful? [Yes/No]
+* UI matches brand reference? [Yes/No]
 
 Visual Evidence
 Please attach a screenshot or screen recording of the change in the Staging environment.
